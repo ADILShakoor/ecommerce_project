@@ -14,8 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# add by me
-STATICFILES_DIRS = [BASE_DIR / 'static']
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +24,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 SECRET_KEY = 'django-insecure-n-90qp=6oo!)0s8&60#*%!f$n26phz4@igrf@n1xf71!@#j6oi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -127,6 +126,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+# settings.py
+# SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+# SESSION_COOKIE_AGE = 1209600  # 2 weeks
+# SESSION_SAVE_EVERY_REQUEST = True
+# AUTH_USER_MODEL = 'accounts.CustomUser'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -135,11 +140,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+STATICFILES_DIRS = [BASE_DIR /'static']
 
-
-MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+MEDIA_ROOT = BASE_DIR /'media'
+STATIC_ROOT = BASE_DIR /'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

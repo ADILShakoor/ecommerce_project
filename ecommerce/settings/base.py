@@ -1,3 +1,4 @@
+# base.py
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -9,14 +10,12 @@ DEBUG = False
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
-    'django.contrib.admin',  # Admin site
-    'django.contrib.auth',  # Authentication framework
-    'django.contrib.contenttypes',  # Content types
-    'django.contrib.sessions',  # Session framework
-    'django.contrib.messages',  # Messaging framework
-    'django.contrib.staticfiles',  # Static files management
-
-    # Your custom apps
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
     'accounts',
     'products',
     'orders',
@@ -56,11 +55,48 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
+ROOT_URLCONF = 'ecommerce.urls'
 
-# Database, Static, Media, Authentication, etc.
-# Static files (CSS, JavaScript, Images)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ecommerce_db',
+        'USER': 'postgres',
+        'PASSWORD': 'adil1714',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_TZ = True
+
+# Database, Static, Media, Authentication, etc
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
-# Static files settings for development and production
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Optional: For additional static files during development
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where Django will collect all static files for production
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
